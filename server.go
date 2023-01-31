@@ -226,7 +226,7 @@ func (s *Server) NewClient(c net.Conn, listener string, id string, inline bool) 
 
 // AddHook attaches a new Hook to the server. Ideally, this should be called
 // before the server is started with s.Serve().
-func (s *Server) AddHook(hook Hook, config any) error {
+func (s *Server) AddHook(hook Hook, config interface{}) error {
 	nl := s.Log.With().Str("hook", hook.ID()).Logger()
 	hook.SetOpts(&nl, &HookOptions{
 		Capabilities: s.Options.Capabilities,

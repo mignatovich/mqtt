@@ -39,7 +39,7 @@ func (h *Hook) Provides(b byte) bool {
 }
 
 // Init is called when the hook is initialized.
-func (h *Hook) Init(config any) error {
+func (h *Hook) Init(config interface{}) error {
 	if _, ok := config.(*Options); !ok && config != nil {
 		return mqtt.ErrInvalidConfigType
 	}
@@ -176,8 +176,8 @@ func (h *Hook) StoredSysInfo() (v storage.SystemInfo, err error) {
 }
 
 // packetMeta adds additional type-specific metadata to the debug logs.
-func (h *Hook) packetMeta(pk packets.Packet) map[string]any {
-	m := map[string]any{}
+func (h *Hook) packetMeta(pk packets.Packet) map[string]interface{} {
+	m := map[string]interface{}{}
 	switch pk.FixedHeader.Type {
 	case packets.Connect:
 		m["id"] = pk.Connect.ClientIdentifier

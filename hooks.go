@@ -64,7 +64,7 @@ var (
 type Hook interface {
 	ID() string
 	Provides(b byte) bool
-	Init(config any) error
+	Init(config interface{}) error
 	Stop() error
 	SetOpts(l *zerolog.Logger, o *HookOptions)
 	OnStarted()
@@ -135,7 +135,7 @@ func (h *Hooks) Provides(b ...byte) bool {
 }
 
 // Add adds and initializes a new hook.
-func (h *Hooks) Add(hook Hook, config any) error {
+func (h *Hooks) Add(hook Hook, config interface{}) error {
 	h.Lock()
 	defer h.Unlock()
 
@@ -633,7 +633,7 @@ func (h *HookBase) Provides(b byte) bool {
 
 // Init performs any pre-start initializations for the hook, such as connecting to databases
 // or opening files.
-func (h *HookBase) Init(config any) error {
+func (h *HookBase) Init(config interface{}) error {
 	return nil
 }
 

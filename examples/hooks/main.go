@@ -35,7 +35,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	err = server.AddHook(new(ExampleHook), map[string]any{})
+	err = server.AddHook(new(ExampleHook), map[string]interface{}{})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -105,7 +105,7 @@ func (h *ExampleHook) Provides(b byte) bool {
 	}, []byte{b})
 }
 
-func (h *ExampleHook) Init(config any) error {
+func (h *ExampleHook) Init(config interface{}) error {
 	h.Log.Info().Msg("initialised")
 	return nil
 }

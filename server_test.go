@@ -30,7 +30,7 @@ type ProtocolTest []struct {
 	protocolVersion byte
 	in              packets.TPacketCase
 	out             packets.TPacketCase
-	data            map[string]any
+	data            map[string]interface{}
 }
 
 type AllowHook struct {
@@ -1843,7 +1843,7 @@ func TestServerProcessInboundQos2Flow(t *testing.T) {
 			protocolVersion: 5,
 			in:              packets.TPacketData[packets.Publish].Get(packets.TPublishQos2),
 			out:             packets.TPacketData[packets.Pubrec].Get(packets.TPubrec),
-			data: map[string]any{
+			data: map[string]interface{}{
 				"sendquota": int32(3),
 				"recvquota": int32(2),
 				"inflight":  int64(1),
@@ -1853,7 +1853,7 @@ func TestServerProcessInboundQos2Flow(t *testing.T) {
 			protocolVersion: 5,
 			in:              packets.TPacketData[packets.Pubrel].Get(packets.TPubrel),
 			out:             packets.TPacketData[packets.Pubcomp].Get(packets.TPubcomp),
-			data: map[string]any{
+			data: map[string]interface{}{
 				"sendquota": int32(4),
 				"recvquota": int32(3),
 				"inflight":  int64(0),
@@ -1905,7 +1905,7 @@ func TestServerProcessOutboundQos2Flow(t *testing.T) {
 			protocolVersion: 5,
 			in:              packets.TPacketData[packets.Publish].Get(packets.TPublishQos2),
 			out:             packets.TPacketData[packets.Publish].Get(packets.TPublishQos2),
-			data: map[string]any{
+			data: map[string]interface{}{
 				"sendquota": int32(2),
 				"recvquota": int32(3),
 				"inflight":  int64(1),
@@ -1915,7 +1915,7 @@ func TestServerProcessOutboundQos2Flow(t *testing.T) {
 			protocolVersion: 5,
 			in:              packets.TPacketData[packets.Pubrec].Get(packets.TPubrec),
 			out:             packets.TPacketData[packets.Pubrel].Get(packets.TPubrel),
-			data: map[string]any{
+			data: map[string]interface{}{
 				"sendquota": int32(2),
 				"recvquota": int32(2),
 				"inflight":  int64(1),
@@ -1924,7 +1924,7 @@ func TestServerProcessOutboundQos2Flow(t *testing.T) {
 		{
 			protocolVersion: 5,
 			in:              packets.TPacketData[packets.Pubcomp].Get(packets.TPubcomp),
-			data: map[string]any{
+			data: map[string]interface{}{
 				"sendquota": int32(3),
 				"recvquota": int32(3),
 				"inflight":  int64(0),

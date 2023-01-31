@@ -31,7 +31,7 @@ func (h *modifiedHookBase) ID() string {
 	return "modified"
 }
 
-func (h *modifiedHookBase) Init(config any) error {
+func (h *modifiedHookBase) Init(config interface{}) error {
 	if config != nil {
 		return errTestHook
 	}
@@ -200,7 +200,7 @@ func TestHooksAddLenGetAll(t *testing.T) {
 
 func TestHooksAddInitFailure(t *testing.T) {
 	h := new(Hooks)
-	err := h.Add(new(modifiedHookBase), map[string]any{})
+	err := h.Add(new(modifiedHookBase), map[string]interface{}{})
 	require.Error(t, err)
 	require.Equal(t, int64(0), atomic.LoadInt64(&h.qty))
 }

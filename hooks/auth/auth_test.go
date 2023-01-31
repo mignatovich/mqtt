@@ -36,7 +36,7 @@ func TestBasicInitBadConfig(t *testing.T) {
 	h := new(Hook)
 	h.SetOpts(&logger, nil)
 
-	err := h.Init(map[string]any{})
+	err := h.Init(map[string]interface{}{})
 	require.Error(t, err)
 }
 

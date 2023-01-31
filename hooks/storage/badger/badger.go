@@ -89,7 +89,7 @@ func (h *Hook) Provides(b byte) bool {
 }
 
 // Init initializes and connects to the badger instance.
-func (h *Hook) Init(config any) error {
+func (h *Hook) Init(config interface{}) error {
 	if _, ok := config.(*Options); !ok && config != nil {
 		return mqtt.ErrInvalidConfigType
 	}
