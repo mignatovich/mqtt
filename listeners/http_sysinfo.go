@@ -13,7 +13,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/mochi-co/mqtt/v2/system"
+	"github.com/mignatovich/mqtt/v2/system"
 
 	"github.com/rs/zerolog"
 )

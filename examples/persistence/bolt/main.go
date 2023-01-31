@@ -11,10 +11,10 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/mochi-co/mqtt/v2"
-	"github.com/mochi-co/mqtt/v2/hooks/auth"
-	"github.com/mochi-co/mqtt/v2/hooks/storage/bolt"
-	"github.com/mochi-co/mqtt/v2/listeners"
+	"github.com/mignatovich/mqtt/v2"
+	"github.com/mignatovich/mqtt/v2/hooks/auth"
+	"github.com/mignatovich/mqtt/v2/hooks/storage/bolt"
+	"github.com/mignatovich/mqtt/v2/listeners"
 	"go.etcd.io/bbolt"
 )
 
