@@ -329,7 +329,14 @@ func (s *Server) attachClient(cl *Client, listener string) error {
 		return code // [MQTT-3.2.2-7] [MQTT-3.1.4-6]
 	}
 
-	s.hooks.OnConnect(cl, pk)
+	if !s.hooks.OnConnect(cl, pk) {
+		err := s.sendConnack(cl, packets.ErrBanned, false)
+		if err != nil {
+			return fmt.Errorf("invalid connection send ack: %w", err)
+		}
+
+		return packets.ErrBanned
+	}
 
 	if !s.hooks.OnConnectAuthenticate(cl, pk) { // [MQTT-3.1.4-2]
 		err := s.sendConnack(cl, packets.ErrBadUsernameOrPassword, false)

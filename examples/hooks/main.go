@@ -110,8 +110,9 @@ func (h *ExampleHook) Init(config interface{}) error {
 	return nil
 }
 
-func (h *ExampleHook) OnConnect(cl *mqtt.Client, pk packets.Packet) {
+func (h *ExampleHook) OnConnect(cl *mqtt.Client, pk packets.Packet) bool {
 	h.Log.Info().Str("client", cl.ID).Msgf("client connected")
+	return true
 }
 
 func (h *ExampleHook) OnDisconnect(cl *mqtt.Client, err error, expire bool) {
