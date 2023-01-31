@@ -10,10 +10,10 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/mignatovich/mqtt/v2"
-	"github.com/mignatovich/mqtt/v2/hooks/auth"
-	"github.com/mignatovich/mqtt/v2/hooks/storage/badger"
-	"github.com/mignatovich/mqtt/v2/listeners"
+	"github.com/mochi-co/mqtt/v2"
+	"github.com/mochi-co/mqtt/v2/hooks/auth"
+	"github.com/mochi-co/mqtt/v2/hooks/storage/badger"
+	"github.com/mochi-co/mqtt/v2/listeners"
 )
 
 func main() {
