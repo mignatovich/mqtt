@@ -353,7 +353,7 @@ func (h *Hook) OnQosDropped(cl *mqtt.Client, pk packets.Packet) {
 }
 
 // OnSysInfoTick stores the latest system info in the store.
-func (h *Hook) OnSysInfoTick(sys *system.Info) {
+func (h *Hook) OnSysInfoTick(sys *system.Info, topics map[string]string) {
 	if h.db == nil {
 		h.Log.Error().Err(storage.ErrDBFileNotOpen)
 		return

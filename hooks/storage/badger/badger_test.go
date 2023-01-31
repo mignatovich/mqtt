@@ -459,7 +459,7 @@ func TestOnSysInfoTick(t *testing.T) {
 		BytesReceived: 100,
 	}
 
-	h.OnSysInfoTick(info)
+	h.OnSysInfoTick(info, map[string]string{})
 
 	r := new(storage.SystemInfo)
 	err = h.db.Get(storage.SysInfoKey, r)
@@ -472,7 +472,7 @@ func TestOnSysInfoTick(t *testing.T) {
 func TestOnSysInfoTickNoDB(t *testing.T) {
 	h := new(Hook)
 	h.SetOpts(&logger, nil)
-	h.OnSysInfoTick(new(system.Info))
+	h.OnSysInfoTick(new(system.Info), map[string]string{})
 }
 
 func TestOnSysInfoTickClosedDB(t *testing.T) {
@@ -481,7 +481,7 @@ func TestOnSysInfoTickClosedDB(t *testing.T) {
 	err := h.Init(nil)
 	require.NoError(t, err)
 	teardown(t, h.config.Path, h)
-	h.OnSysInfoTick(new(system.Info))
+	h.OnSysInfoTick(new(system.Info), map[string]string{})
 }
 
 func TestStoredClients(t *testing.T) {

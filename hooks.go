@@ -71,7 +71,7 @@ type Hook interface {
 	OnStopped()
 	OnConnectAuthenticate(cl *Client, pk packets.Packet) bool
 	OnACLCheck(cl *Client, topic string, write bool) bool
-	OnSysInfoTick(*system.Info)
+	OnSysInfoTick(*system.Info, map[string]string)
 	OnConnect(cl *Client, pk packets.Packet) bool
 	OnSessionEstablished(cl *Client, pk packets.Packet)
 	OnDisconnect(cl *Client, err error, expire bool)
@@ -184,10 +184,10 @@ func (h *Hooks) Stop() {
 }
 
 // OnSysInfoTick is called when the $SYS topic values are published out.
-func (h *Hooks) OnSysInfoTick(sys *system.Info) {
+func (h *Hooks) OnSysInfoTick(sys *system.Info, topics map[string]string) {
 	for _, hook := range h.GetAll() {
 		if hook.Provides(OnSysInfoTick) {
-			hook.OnSysInfoTick(sys)
+			hook.OnSysInfoTick(sys, topics)
 		}
 	}
 }
@@ -659,7 +659,7 @@ func (h *HookBase) OnStarted() {}
 func (h *HookBase) OnStopped() {}
 
 // OnSysInfoTick is called when the server publishes system info.
-func (h *HookBase) OnSysInfoTick(*system.Info) {}
+func (h *HookBase) OnSysInfoTick(*system.Info, map[string]string) {}
 
 // OnConnectAuthenticate is called when a user attempts to authenticate with the server.
 func (h *HookBase) OnConnectAuthenticate(cl *Client, pk packets.Packet) bool {

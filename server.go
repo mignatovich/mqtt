@@ -1215,7 +1215,7 @@ func (s *Server) publishSysTopics() {
 		s.publishToSubscribers(pk)
 	}
 
-	s.hooks.OnSysInfoTick(s.Info)
+	s.hooks.OnSysInfoTick(s.Info, topics)
 }
 
 // Close attempts to gracefully shutdown the server, all listeners, clients, and stores.

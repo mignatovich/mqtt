@@ -527,7 +527,7 @@ func TestOnSysInfoTick(t *testing.T) {
 		BytesReceived: 100,
 	}
 
-	h.OnSysInfoTick(info)
+	h.OnSysInfoTick(info, map[string]string{})
 
 	r := new(storage.SystemInfo)
 	row, err := h.db.HGet(h.ctx, h.hKey(storage.SysInfoKey), storage.SysInfoKey).Result()
@@ -544,14 +544,14 @@ func TestOnSysInfoTickClosedDB(t *testing.T) {
 	defer s.Close()
 	h := newHook(t, s.Addr())
 	teardown(t, h)
-	h.OnSysInfoTick(new(system.Info))
+	h.OnSysInfoTick(new(system.Info), map[string]string{})
 }
 func TestOnSysInfoTickNoDB(t *testing.T) {
 	s := miniredis.RunT(t)
 	defer s.Close()
 	h := newHook(t, s.Addr())
 	h.db = nil
-	h.OnSysInfoTick(new(system.Info))
+	h.OnSysInfoTick(new(system.Info), map[string]string{})
 }
 
 func TestStoredClients(t *testing.T) {

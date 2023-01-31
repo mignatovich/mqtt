@@ -227,7 +227,7 @@ func TestHooksNonReturns(t *testing.T) {
 			// on first iteration, check without hook methods
 			h.OnStarted()
 			h.OnStopped()
-			h.OnSysInfoTick(new(system.Info))
+			h.OnSysInfoTick(new(system.Info), map[string]string{})
 			h.OnConnect(cl, packets.Packet{})
 			h.OnSessionEstablished(cl, packets.Packet{})
 			h.OnDisconnect(cl, nil, false)
