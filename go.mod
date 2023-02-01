@@ -1,4 +1,4 @@
-module github.com/mochi-co/mqtt/v2
+module github.com/mignatovich/mqtt/v2
 
 go 1.17
 

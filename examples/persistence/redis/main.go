@@ -10,10 +10,10 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/mochi-co/mqtt/v2"
-	"github.com/mochi-co/mqtt/v2/hooks/auth"
-	"github.com/mochi-co/mqtt/v2/hooks/storage/redis"
-	"github.com/mochi-co/mqtt/v2/listeners"
+	"github.com/mignatovich/mqtt/v2"
+	"github.com/mignatovich/mqtt/v2/hooks/auth"
+	"github.com/mignatovich/mqtt/v2/hooks/storage/redis"
+	"github.com/mignatovich/mqtt/v2/listeners"
 	"github.com/rs/zerolog"
 
 	rv8 "github.com/go-redis/redis/v8"
